@@ -1,7 +1,7 @@
 ---
 test:
   hosts: <%= ENV.fetch('SECRET_HOSTS').split(",").to_s %>
-  admin_email: it@railsskeleton.com
+  admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "GOOGLE_CLIENT_ID"
     client_secret: "<%= ENV.fetch('SECRET_GOOGLE_AUTH_CLIENT_SECRET') %>"
@@ -20,7 +20,7 @@ test:
 
 development:
   hosts: <%= ENV.fetch('SECRET_HOSTS').split(",").to_s %>
-  admin_email: it@railsskeleton.com
+  admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "193465454284-apigmm255ti8n2rb9ov2obtir6s2cdin.apps.googleusercontent.com"
     client_secret: "<%= ENV.fetch('SECRET_GOOGLE_AUTH_CLIENT_SECRET') %>"
@@ -37,7 +37,7 @@ development:
 
 staging:
   hosts: <%= ENV.fetch('SECRET_HOSTS').split(",").to_s %>
-  admin_email: it@railsskeleton.com
+  admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "193465454284-apigmm255ti8n2rb9ov2obtir6s2cdin.apps.googleusercontent.com"
     client_secret: "<%= ENV.fetch('SECRET_GOOGLE_AUTH_CLIENT_SECRET') %>"
@@ -56,7 +56,7 @@ staging:
 
 production:
   hosts: <%= ENV.fetch('SECRET_HOSTS').split(",").to_s %>
-  admin_email: it@railsskeleton.com
+  admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "193465454284-apigmm255ti8n2rb9ov2obtir6s2cdin.apps.googleusercontent.com"
     client_secret: "<%= ENV.fetch('SECRET_GOOGLE_AUTH_CLIENT_SECRET') %>"

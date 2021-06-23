@@ -9,14 +9,14 @@ default: &default
 
 development:
   <<: *default
-  database: railsskeleton_development
+  database: myperfectweekend_development
 
 test:
   <<: *default
-  database: railsskeleton_test
+  database: myperfectweekend_test
 
 production:
   <<: *default
   host: db
-  database: railsskeleton
+  database: myperfectweekend
   password: root
