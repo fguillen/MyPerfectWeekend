@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :front_sessions, only: [:new, :create, :destroy]
 
     resources :posts
+    resources :weekends
     resources :pages, only: [:show]
   end
 

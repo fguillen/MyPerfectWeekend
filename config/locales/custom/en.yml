@@ -32,6 +32,9 @@ en:
         tags: Tags
         title: Title
         uuid: Uuid
+      weekend:
+        body: Body
+        city: City
     models:
       admin_user: Admin User
   controllers:
@@ -88,6 +91,15 @@ en:
       update:
         error: Errors were encountered when trying to update Post
         success: Successfully updated Post
+    weekends:
+      create:
+        error: Error
+        success: Success
+      destroy:
+        success: Success
+      update:
+        error: Error
+        success: Success
   date:
     formats:
       ymd: "%Y-%d-%m"
@@ -104,6 +116,7 @@ en:
       new: New
       posts: Posts
       reset_password: Reset your password
+      weekends: Weekends
     menu:
       admin_users: Admin Users
       edit_profile: Edit Profile
@@ -117,6 +130,7 @@ en:
       posts: See all posts
       pricing: Pricing
       signup: Signup
+      weekends: Weekends
   views:
     admin_sessions:
       forgot_password:
@@ -179,6 +193,18 @@ en:
         title: Title
       new:
         text: Text
+        title: Title
+      show:
+        delete_button: Delete button
+        delete_confirmation: Delete confirmation
+        edit_button: Edit button
+        title: Title
+    weekends:
+      edit:
+        title: Title
+      index:
+        title: Title
+      new:
         title: Title
       show:
         delete_button: Delete button

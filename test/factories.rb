@@ -28,4 +28,10 @@ FactoryBot.define do
     body { Faker::Lorem.sentence(word_count: 20) }
     front_user
   end
+
+  factory :weekend do
+    city { "Berlin" }
+    body { Faker::Lorem.sentence(word_count: 20) }
+    front_user
+  end
 end

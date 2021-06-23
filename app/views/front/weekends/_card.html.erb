@@ -1,0 +1,11 @@
+<div class="col mb-2">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <h5 class="card-title"><%= weekend.city %></h5>
+      </div>
+      <p class="card-text"><%= truncate(weekend.body, length: 300) %></p>
+      <%= link_to "Read weekend", [:front, weekend], class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

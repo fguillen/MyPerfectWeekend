@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_23_185645) do
+ActiveRecord::Schema.define(version: 2021_06_23_220525) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
@@ -131,8 +131,19 @@ ActiveRecord::Schema.define(version: 2021_06_23_185645) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "weekends", primary_key: "uuid", id: { type: :string, limit: 36 }, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.string "city", null: false
+    t.text "body", null: false
+    t.string "front_user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["front_user_id"], name: "fk_rails_baba50ed81"
+    t.index ["uuid"], name: "index_weekends_on_uuid", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "posts", "front_users", primary_key: "uuid"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "weekends", "front_users", primary_key: "uuid"
 end
