@@ -1,22 +1,21 @@
-<div class="row">
-  <div class="offset-md-2 col-md-8">
-    <div id="weekend-description" contenteditable="true"><strong>FRIDAY</strong> 15:00 Stroll around my neighbourhood (Schöneberg) and do some research for Lissabonbon, the cafe that I’ll open soon. 19:00 Sekt o’clock with friends at Felsenkeller. SATURDAY 10:00 Breakfast at home. I‘ve tried it in a lot of cafes, but mine is still the most tasty. 12:00 Time to check out Trödelmarkt and dig some vintage treasures. 15:00 Show some tourists my Schöneberg through my Vintage Berlin Tour (check out  vintageberlinguide.com). 20:00 Schnitzel at Max und Moritz. 22:00 Perfect night for Primitiv Bar. Best White Russian in town. If it’s the third Saturday, then the DJ is yours truly. 01:00 Shakin’ all over! Bassy is the place to be! Yeah! SUNDAY 13:00 Relaxing picnic at Viktoriapark. 20:00 Nothing better than a movie to finish the weekend. Whatever is at Odeon is fine.</div>
-    <input type="number" id="caret-child"/>
-    <input type="number" id="caret-subchild"/>
-    <input type="number" id="caret-position"/>
-    <hr>
-    <input type="number" id="caret-total-position"/>
-    <%= form_for [:front, @weekend] do |f| %>
-      <%= render "/shared/form_errors", :object => f.object %>
-      <%= f.text_area :body, class: "form-control", rows: 20, placeholder: t("activerecord.attributes.weekend.body") %>
-      <%= f.submit class: "btn btn-primary" %>
-    <% end %>
-  </div>
 
-  <div class="col-md-2">
-    button
+<%= form_for [:front, @weekend] do |f| %>
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <%= render "/shared/form_errors", :object => f.object %>
+      <div id="weekend-description" contenteditable="true">My perfect weekend starts on Friday at 18:00 ... </div>
+      <%= f.text_area :body, class: "form-control", rows: 20, placeholder: t("activerecord.attributes.weekend.body"), id: "weekend-text-area" %>
+
+      <div class="weekend-button text-end nice-font">
+        <%= f.submit class: "btn btn-nice" %>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      button
+    </div>
   </div>
-</div>
+<% end %>
 
 
 
@@ -34,28 +33,55 @@ const STRONG_PATTERNS = [
 ];
 
 weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
+weekendDescriptionElement.addEventListener("input", updateTextArea, false);
+weekendDescriptionElement.addEventListener("keydown", filterKeys, false);
+updateTextArea();
+strongifyWeekendDiv();
+setCursorPositionAtTheEndOfWeekendDiv();
 
-function onDescriptionChange() {
-  console.log("onDescriptionChange()");
-  let actualCursorPosition = cursor_position();
-  let content = weekendDescriptionElement.textContent;
-
-  STRONG_PATTERNS.forEach(regex => {
-    content = strongify(content, regex);
-  });
-
-  console.log("content after: " + content);
-
-  weekendDescriptionElement.innerHTML = content;
-
-  setCursor(weekendDescriptionElement, actualCursorPosition);
+function filterKeys(event) {
+  console.log("filterKeys", event);
+  if (event.which === 13) {
+    event.preventDefault();
+  }
 }
 
-function strongify(text, regex) {
+function onDescriptionChange(event) {
+  console.log("onDescriptionChange", event);
+
+  strongifyWeekendDiv();
+}
+
+function updateTextArea() {
+  document.getElementById("weekend-text-area").value = weekendDescriptionElement.textContent;
+}
+
+function strongifyWeekendDiv() {
+  let actualCursorPosition = getCursorPosition();
+  let previousInnerHTML = weekendDescriptionElement.innerHTML;
+  let result = weekendDescriptionElement.textContent;
+
+  STRONG_PATTERNS.forEach(regex => {
+    result = strongifyText(result, regex);
+  });
+
+  if(previousInnerHTML !== result) {
+    console.debug("not equal: '" + previousInnerHTML + "', '" + result + "'");
+    weekendDescriptionElement.innerHTML = result;
+    setCursorPosition(weekendDescriptionElement, actualCursorPosition);
+  }
+}
+
+function setCursorPositionAtTheEndOfWeekendDiv() {
+  let contentLength = weekendDescriptionElement.textContent.length;
+  setCursorPosition(weekendDescriptionElement, contentLength);
+}
+
+function strongifyText(text, regex) {
   return text.replace(regex, "<strong>$&</strong>");
 }
 
-function cursor_position() {
+function getCursorPosition() {
     var sel = document.getSelection();
     sel.modify("extend", "backward", "paragraphboundary");
     var pos = sel.toString().length;
@@ -64,34 +90,8 @@ function cursor_position() {
     return pos;
 }
 
-// Demo:
-var elm = document.querySelector('[contenteditable]');
-elm.addEventListener('click', printCaretPosition)
-elm.addEventListener('keyup', printCaretPosition)
-
-function printCaretPosition(){
-  console.log("cursor_position: ", cursor_position());
-}
-
-document.getElementById("caret-child").addEventListener("change", goToCursor)
-document.getElementById("caret-subchild").addEventListener("change", goToCursor)
-document.getElementById("caret-position").addEventListener("change", goToCursor)
-document.getElementById("caret-total-position").addEventListener("change", () => {
-  setCursor(weekendDescriptionElement, document.getElementById("caret-total-position").value)
-})
-
-
-function goToCursor() {
-  setCursorByChildNodeIndex(
-    weekendDescriptionElement,
-    document.getElementById("caret-child").value,
-    document.getElementById("caret-subchild").value,
-    document.getElementById("caret-position").value
-  );
-}
-
-function setCursor(element, desiredPosition) {
-  console.log("setCursor", desiredPosition);
+function setCursorPosition(element, desiredPosition) {
+  console.debug("setCursorPosition", desiredPosition);
 
   let childNodes = element.childNodes;
   let childIndex = 0;
@@ -107,54 +107,24 @@ function setCursor(element, desiredPosition) {
     position += 1;
     childPosition += 1;
 
-    if(childPosition >= actualChild.length) {
+    if(childPosition >= actualChild.length && position < desiredPosition) {
       childIndex += 1;
       childPosition = 0;
       actualChild = childNodes[childIndex];
+
       if(actualChild.firstChild) {
         actualChild = actualChild.firstChild;
       }
     }
   }
 
-  setCursorInChildNode(actualChild, childPosition);
-  printCaretPosition();
+  setCursorPositionInChildNode(actualChild, childPosition);
 }
 
-
-
-// function setCursorByChildNodeIndex(element, childIndex, childPosition) {
-//     console.log("setCursorByChildNodeIndex", childIndex, childPosition);
-//     var range = document.createRange();
-//     var sel = window.getSelection();
-
-//     range.setStart(element.childNodes[childIndex], childPosition);
-//     range.collapse(true)
-
-//     sel.removeAllRanges()
-//     sel.addRange(range)
-// }
-
-function setCursorByChildNodeIndex(element, childIndex, subChildIndex, childPosition) {
-  console.log("setCursorByChildNodeIndex", childIndex, subChildIndex, childPosition);
-  var sel = window.getSelection();
-  if(subChildIndex != null) {
-    sel.setPosition(element.childNodes[childIndex].childNodes[subChildIndex], childPosition);
-  } else {
-    sel.setPosition(element.childNodes[childIndex], childPosition);
-  }
-  event.preventDefault();
-}
-
-function setCursorInChildNode(element, position) {
-  console.log("setCursorInChildNode", element, position);
+function setCursorPositionInChildNode(element, position) {
   var sel = window.getSelection();
   sel.setPosition(element, position);
-  event.preventDefault();
 }
-
-
-
 </script>
 
 
@@ -167,9 +137,40 @@ function setCursorInChildNode(element, position) {
   padding: 3em;
   font-family: 'Special Elite', cursive;
   font-size: 1.3em;
+  min-height: 20em;
 }
 
 #weekend-description strong {
   color: #F82F2F;
 }
+
+#weekend-text-area {
+  display: none;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+.weekend-button input {
+  margin: -1em 1em 0 0;
+  box-shadow: 2px 7px 9px -3px rgb(93 91 91 / 76%);
+  font-size: 2em;
+}
+
+.btn-nice {
+  background-color: #FEC5BB;
+  color:#272625;
+  border-color: #FEC5BB;
+}
+
+.btn-nice:hover,
+.btn-nice:active,
+.btn-nice:visited,
+.btn-nice:focus {
+  background-color: #f5b0a3;
+  color:#272625;
+  border-color: #f5b0a3;
+}
+ 
 </style>
