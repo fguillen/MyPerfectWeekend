@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :weekends
     resources :pages, only: [:show]
+    resources :front_users, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
   get '/auth/:provider/callback' => 'admin/admin_authorizations#create', constraints: ->(request) { request.env['omniauth.params']['from'] == 'admin' }
