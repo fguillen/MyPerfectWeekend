@@ -2,7 +2,7 @@ class Weekend < ApplicationRecord
   self.primary_key = :uuid
   include HasUuid
 
-  belongs_to :front_user
+  belongs_to :front_user, optional: true
 
   validates :city, presence: true
   validates :body, length: { in: 20..65_535 }

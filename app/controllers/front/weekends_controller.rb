@@ -1,6 +1,6 @@
 class Front::WeekendsController < Front::BaseController
   before_action :load_weekend, only: [:show, :edit, :update, :destroy]
-  before_action :require_front_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_front_user, only: [:edit, :update, :destroy]
   before_action :validate_current_front_user, only: [:edit, :update, :destroy]
 
   def index
