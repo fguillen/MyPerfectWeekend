@@ -7,7 +7,7 @@
       <%= f.text_area :body, class: "form-control", rows: 20, placeholder: t("activerecord.attributes.weekend.body"), id: "weekend-text-area" %>
 
       <div class="weekend-button text-end nice-font">
-        <%= f.submit class: "btn btn-nice" %>
+        <%= f.submit "Send", class: "btn btn-nice" %>
       </div>
     </div>
 
@@ -156,6 +156,7 @@ function setCursorPositionInChildNode(element, position) {
   margin: -1em 1em 0 0;
   box-shadow: 2px 7px 9px -3px rgb(93 91 91 / 76%);
   font-size: 2em;
+  padding: 0 1em;
 }
 
 .btn-nice {
