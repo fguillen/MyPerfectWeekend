@@ -3,10 +3,11 @@
   <div class="row">
     <div class="offset-md-2 col-md-8">
       <%= render "/shared/form_errors", :object => f.object %>
-      <div id="weekend-description" contenteditable="true">My perfect weekend starts on Friday at 18:00 ... </div>
-      <%= f.text_area :body, class: "form-control", rows: 20, placeholder: t("activerecord.attributes.weekend.body"), id: "weekend-text-area" %>
 
-      <div class="weekend-button text-end nice-font">
+      <div id="weekend-description" class="box-user-input background-1" contenteditable="true">My perfect weekend starts on Friday at 18:00 ... </div>
+      <%= f.text_area :body, class: "form-control input-hidden", rows: 20, placeholder: t("activerecord.attributes.weekend.body"), id: "weekend-text-area" %>
+
+      <div class="weekend-button text-end font-nice">
         <%= f.submit "Send", class: "btn btn-nice" %>
       </div>
     </div>
@@ -30,6 +31,7 @@ const STRONG_PATTERNS = [
   /saturday/ig,
   /sunday/ig,
   /\d\d:\d\d/ig,
+  /"[^\\"]*(\\"[^\\"]*)*"/g
 ];
 
 weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
@@ -126,52 +128,3 @@ function setCursorPositionInChildNode(element, position) {
   sel.setPosition(element, position);
 }
 </script>
-
-
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-
-#weekend-description {
-  background-color: #D8E2DC;
-  padding: 3em;
-  font-family: 'Special Elite', cursive;
-  font-size: 1.3em;
-  min-height: 20em;
-}
-
-#weekend-description strong {
-  color: #F82F2F;
-}
-
-#weekend-text-area {
-  display: none;
-}
-
-[contenteditable] {
-  outline: 0px solid transparent;
-}
-
-.weekend-button input {
-  margin: -1em 1em 0 0;
-  box-shadow: 2px 7px 9px -3px rgb(93 91 91 / 76%);
-  font-size: 2em;
-  padding: 0 1em;
-}
-
-.btn-nice {
-  background-color: #FEC5BB;
-  color:#272625;
-  border-color: #FEC5BB;
-}
-
-.btn-nice:hover,
-.btn-nice:active,
-.btn-nice:visited,
-.btn-nice:focus {
-  background-color: #f5b0a3;
-  color:#272625;
-  border-color: #f5b0a3;
-}
- 
-</style>

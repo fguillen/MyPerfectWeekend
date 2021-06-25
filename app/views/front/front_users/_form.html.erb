@@ -1,3 +1,45 @@
+
+<%= form_for [:front, @front_user] do |f| %>
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <%= render "/shared/form_errors", :object => f.object %>
+      <div id="front-user-description" class="box-user-input background-1">
+        <p>
+          My name is <span contenteditable="true" class="input-inline" id="front-user-name"></span>,
+          I am originally from <span contenteditable="true" class="input-inline" id="front-user-country"></span>,
+          I am <span contenteditable="true" class="input-inline" id="front-user-age"></span> years old and
+          I really would like to be a <span contenteditable="true" class="input-inline" id="front-user-wannabe"></span>.
+        </p>
+      </div>
+
+      <div class="box-help">
+        <p>
+          Example:
+          My name is <strong>Julieta</strong>, I am originally from <strong>Spain</strong>,
+          I am <strong>35</strong> years old and I really would like to be a <strong>interestellar
+          transport driver</strong>. <span class="light">(All fields are optional).</span>
+        </p>
+      </div>
+
+      <%= f.text_field :name, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.name") %>
+      <%= f.text_field :country, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.country") %>
+      <%= f.text_field :age, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.age") %>
+      <%= f.text_field :wannabe, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.wannabe") %>
+
+
+      <div class="weekend-button text-end font-nice">
+        <%= f.submit "Send", class: "btn btn-nice" %>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      button
+    </div>
+  </div>
+<% end %>
+
+
+
 <%= form_for [:front, @front_user] do |f| %>
   <%= render "/shared/form_errors", :object => f.object %>
   <fieldset>
@@ -42,3 +84,23 @@
       </div>
   </fieldset>
 <% end %>
+
+<style>
+
+#front-user-name {
+  min-width: 5em;
+}
+#front-user-age {
+
+  min-width: 2em;
+}
+#front-user-country {
+
+  min-width: 5em;
+}
+#front-user-wannabe {
+
+  min-width: 10em;
+}
+
+</style>

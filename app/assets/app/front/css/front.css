@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Rochester&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 body {
     background-color: #F4EEED;
     color: #272625
 }
 
-.nice-font {
+.font-nice {
     font-family: 'Rochester', cursive;
 }
 
-.console-font {
+.font-console {
     font-family: 'Inconsolata', monospace;
+}
+
+.light {
+    font-weight: 300;
 }
 
 footer {
@@ -25,4 +30,76 @@ footer ul {
 
 footer a {
     color: #FEC5BB;
+}
+
+.box-user-input {
+    padding: 2em;
+    font-family: 'Special Elite', cursive;
+    font-size: 1.5em;
+    line-height: 1.2em;
+}
+
+.box-user-input strong {
+    color: #F82F2F;
+}
+
+.box-notification {
+    padding: 2em;
+    font-family: 'Inconsolata', monospace;
+    font-size: 1.2em;
+}
+
+.box-help {
+    line-height: 0.95em;
+    font-family: 'Inconsolata', monospace;
+    padding: 0 2em;
+    margin-top: 0.8em;
+}
+
+.background-1 {
+    background-color: #D8E2DC;
+}
+
+.background-2 {
+    background-color: #FFD7BA;
+}
+
+.input-hidden {
+    display: none;
+}
+
+.input-inline {
+    display: inline-block;
+    background-color: #FAE1DD;
+    min-height: 1.3em;
+    min-width: 5em;
+    color: #F82F2F;
+    padding: 0.2em 0.5em;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
+}
+
+#weekend-description {
+    min-height: 20em;
+}
+
+.btn-nice {
+    margin: -1em 1em 0 0;
+    box-shadow: 2px 7px 9px -3px rgb(93 91 91 / 76%);
+    font-size: 2em;
+    padding: 0 1em;
+    background-color: #FEC5BB;
+    color: #272625;
+    border-color: #FEC5BB;
+}
+
+.btn-nice:hover,
+.btn-nice:active,
+.btn-nice:visited,
+.btn-nice:focus {
+    background-color: #f5b0a3;
+    color: #272625;
+    border-color: #f5b0a3;
 }

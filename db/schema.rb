@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_23_220525) do
+ActiveRecord::Schema.define(version: 2021_06_25_180501) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,9 @@ ActiveRecord::Schema.define(version: 2021_06_23_220525) do
     t.string "persistence_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "age"
+    t.string "country"
+    t.string "wannabe"
     t.index ["perishable_token"], name: "index_front_users_on_perishable_token", unique: true
     t.index ["persistence_token"], name: "index_front_users_on_persistence_token", unique: true
     t.index ["uuid"], name: "index_front_users_on_uuid", unique: true
@@ -141,7 +144,6 @@ ActiveRecord::Schema.define(version: 2021_06_23_220525) do
     t.index ["uuid"], name: "index_weekends_on_uuid", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "posts", "front_users", primary_key: "uuid"
   add_foreign_key "taggings", "tags"
