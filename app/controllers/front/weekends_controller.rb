@@ -9,7 +9,12 @@ class Front::WeekendsController < Front::BaseController
 
   def my_weekends
     @weekends = Weekend.where(front_user: current_front_user).order_by_recent
-    render action: :index
+
+    if @weekends.empty?
+      redirect_to :new_front_weekend, notice: t("controllers.weekends.my_weekends.no_weekends")
+    else
+      render action: :index
+    end
   end
 
   def show; end
