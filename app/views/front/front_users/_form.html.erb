@@ -21,14 +21,33 @@
         </p>
       </div>
 
-      <%= f.text_field :name, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.name") %>
-      <%= f.text_field :country, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.country") %>
-      <%= f.text_field :age, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.age") %>
-      <%= f.text_field :wannabe, class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.wannabe") %>
+      <div class="text-center mb-4 mt-4">
+        <span class="dot"></span>
+      </div>
 
+      <div class="mb-2 background-2 box-notification">
+        Give us your email so you can access to your perfect weekends and update and modify them
+      </div>
+      <div id="front-user-description" class="box-user-input background-1">
+        <p>
+          My email is <span contenteditable="true" class="input-inline" id="front-user-email"></span>
+        </p>
+      </div>
+
+      <div class="box-help">
+        <p>
+          <span class="light">(Also optional)</span>. We don’t send spam and we don’t share this email with anyone.
+        </p>
+      </div>
+
+      <%= f.text_field :name, id:"front-user-name-input", class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.name") %>
+      <%= f.text_field :country, id:"front-user-country-input", class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.country") %>
+      <%= f.text_field :age, id:"front-user-age-input", class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.age") %>
+      <%= f.text_field :wannabe, id:"front-user-wannabe-input", class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.wannabe") %>
+      <%= f.text_field :email, id:"front-user-email-input", class: "form-control input-hidden", placeholder: t("activerecord.attributes.front_user.email") %>
 
       <div class="weekend-button text-end font-nice">
-        <%= f.submit "Send", class: "btn btn-nice" %>
+        <%= f.submit "Send", class: "btn btn-nice mt-2" %>
       </div>
     </div>
 
@@ -38,69 +57,44 @@
   </div>
 <% end %>
 
-
-
-<%= form_for [:front, @front_user] do |f| %>
-  <%= render "/shared/form_errors", :object => f.object %>
-  <fieldset>
-    <legend><%= "FrontUser attributes" %></legend>
-    <hr>
-
-    <div class="row mb-3">
-      <%= f.label :name, class: "col-sm-2 col-form-label text-end"%>
-      <div class="col-sm-10">
-        <%= f.text_field :name, class: "form-control", placeholder: t("activerecord.attributes.front_user.name") %>
-        <div class="form-text">Give a name to your front_user.</div>
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <%= f.label :email, class: "col-sm-2 col-form-label text-end"%>
-      <div class="col-sm-10">
-        <%= f.text_field :email, class: "form-control", placeholder: t("activerecord.attributes.front_user.email") %>
-        <div class="form-text">Give a email to your front_user.</div>
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <%= f.label :password, class: "col-sm-2 col-form-label text-end"%>
-      <div class="col-sm-10">
-        <%= f.password_field :password, class: "form-control", placeholder: t("activerecord.attributes.front_user.password") %>
-        <div class="form-text">Give a password to your front_user.</div>
-      </div>
-    </div>
-
-    <div class="row mb-3">
-      <%= f.label :password_confirmation, class: "col-sm-2 col-form-label text-end"%>
-      <div class="col-sm-10">
-        <%= f.password_field :password_confirmation, class: "form-control", placeholder: t("activerecord.attributes.front_user.password_confirmation") %>
-        <div class="form-text">Confirm the password.</div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="offset-sm-2 col">
-        <%= f.submit class: "btn btn-primary" %>
-      </div>
-  </fieldset>
-<% end %>
-
 <style>
 
 #front-user-name {
   min-width: 5em;
 }
-#front-user-age {
 
+#front-user-age {
   min-width: 2em;
 }
+
 #front-user-country {
-
-  min-width: 5em;
+  min-width: 4em;
 }
-#front-user-wannabe {
 
+#front-user-wannabe {
+  min-width: 7em;
+}
+
+#front-user-email {
   min-width: 10em;
 }
 
 </style>
+
+
+<script>
+connectInputField("front-user-name", "front-user-name-input");
+connectInputField("front-user-age", "front-user-age-input");
+connectInputField("front-user-country", "front-user-country-input");
+connectInputField("front-user-wannabe", "front-user-wannabe-input");
+connectInputField("front-user-email", "front-user-email-input");
+
+function connectInputField(elementId, inputElementId){
+  let element = document.getElementById(elementId);
+  let inputElement = document.getElementById(inputElementId);
+
+  element.textContent = inputElement.value;
+
+  element.addEventListener("input", () => { inputElement.value = element.textContent } , false);
+}
+</script>

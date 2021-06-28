@@ -38,7 +38,7 @@ class Front::FrontUsersController < Front::BaseController
   protected
 
   def front_user_params
-    params.require(:front_user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:front_user).permit(:name, :country, :age, :wannabe, :email, :password, :password_confirmation)
   end
 
   private

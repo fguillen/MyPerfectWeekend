@@ -16,7 +16,7 @@ class FrontUser < ApplicationRecord
   validates :password, confirmation: true, allow_blank: true
   validates :country, length: { maximum: 30 }, allow_blank: true
   validates :wannabe, length: { maximum: 100 }, allow_blank: true
-  validates :years_old, numericality: { only_integer: true }, allow_blank: true
+  validates :age, numericality: { only_integer: true }, allow_blank: true
 
   validates_with PasswordValidator, unless: -> { password.blank? }
 

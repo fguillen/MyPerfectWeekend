@@ -44,9 +44,10 @@ footer a {
 }
 
 .box-notification {
-    padding: 2em;
+    padding: 1em 2em;
     font-family: 'Inconsolata', monospace;
     font-size: 1.2em;
+    line-height: 0.9em;
 }
 
 .box-help {
@@ -102,4 +103,12 @@ footer a {
     background-color: #f5b0a3;
     color: #272625;
     border-color: #f5b0a3;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
 }
