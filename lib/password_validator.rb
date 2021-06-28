@@ -23,6 +23,7 @@ class PasswordValidator < ActiveModel::Validator
 
   def password_does_not_contain_name(record)
     return true unless record.send(:require_password?)
+    return true if record.name.blank?
 
     name_parts = record.name.downcase.split(' ').compact
 
