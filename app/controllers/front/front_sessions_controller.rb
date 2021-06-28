@@ -7,6 +7,7 @@ class Front::FrontSessionsController < Front::BaseController
     @front_session = FrontSession.new(front_session_params.to_h)
 
     if @front_session.save
+      AssignWeekendsInCookieService.perform(@front_session.record, cookies)
       flash[:notice] = t("controllers.front_sessions.authenticate.success")
       redirect_back_or_default front_root_path
     else

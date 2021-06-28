@@ -1,10 +1,15 @@
 class Front::WeekendsController < Front::BaseController
   before_action :load_weekend, only: [:show, :edit, :update, :destroy]
-  before_action :require_front_user, only: [:edit, :update, :destroy]
+  before_action :require_front_user, only: [:my_weekends, :edit, :update, :destroy]
   before_action :validate_current_front_user, only: [:edit, :update, :destroy]
 
   def index
     @weekends = Weekend.order_by_recent
+  end
+
+  def my_weekends
+    @weekends = Weekend.where(front_user: current_front_user).order_by_recent
+    render action: :index
   end
 
   def show; end
@@ -18,7 +23,12 @@ class Front::WeekendsController < Front::BaseController
     @weekend.front_user = current_front_user
 
     if @weekend.save
-      redirect_to [:front, @weekend], notice: t("controllers.weekends.create.success")
+      if current_front_user.nil?
+        StoreWeekendInCookieService.perform(@weekend, cookies)
+        redirect_to :new_front_front_user, notice: t("controllers.weekends.create.success_new_front_user")
+      else
+        redirect_to :my_weekends_front_weekends, notice: t("controllers.weekends.create.success")
+      end
     else
       flash.now[:alert] = t("controllers.weekends.create.error")
       render action: :new

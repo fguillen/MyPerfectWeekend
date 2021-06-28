@@ -15,6 +15,18 @@ class Front::WeekendsControllerTest < ActionController::TestCase
     assert_primary_keys([weekend_2, weekend_1], assigns(:weekends))
   end
 
+  def test_my_weekends
+    front_user_other = FactoryBot.create(:front_user)
+    weekend_1 = FactoryBot.create(:weekend, front_user: @front_user, created_at: "2020-04-25")
+    weekend_2 = FactoryBot.create(:weekend, front_user: @front_user, created_at: "2020-04-26")
+    _weekend_3 = FactoryBot.create(:weekend, front_user: front_user_other, created_at: "2020-04-27")
+
+    get :index
+
+    assert_template "front/weekends/my_weekends"
+    assert_primary_keys([weekend_2, weekend_1], assigns(:weekends))
+  end
+
   def test_show
     weekend = FactoryBot.create(:weekend)
 

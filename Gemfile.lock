@@ -355,6 +355,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    strip_attributes (1.11.0)
+      activemodel (>= 3.0, < 7.0)
     style_palette (0.0.7)
     systemu (2.6.5)
     terminal-table (3.0.0)
@@ -365,9 +367,6 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.4)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -445,9 +444,9 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen
+  strip_attributes
   style_palette
   timecop
-  turbolinks
   uglifier
   uuid
   virtus

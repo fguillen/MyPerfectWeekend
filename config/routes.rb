@@ -38,7 +38,9 @@ Rails.application.routes.draw do
     resources :front_sessions, only: [:new, :create, :destroy]
 
     resources :posts
-    resources :weekends
+    resources :weekends do
+      get "my_weekends", on: :collection
+    end
     resources :pages, only: [:show]
     resources :front_users, only: [:show, :new, :create, :edit, :update, :destroy]
   end

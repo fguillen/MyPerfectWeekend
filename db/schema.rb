@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_180501) do
+ActiveRecord::Schema.define(version: 2021_06_28_175819) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 2021_06_25_180501) do
   end
 
   create_table "front_users", primary_key: "uuid", id: :string, charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
+    t.string "name"
+    t.string "email"
     t.string "crypted_password"
     t.string "password_salt"
     t.string "perishable_token"

@@ -9,8 +9,10 @@
     <li class="nav-item"><%= link_to t("layouts.menu.weekends"), :front_weekends, class: "nav-link" %></li>
 
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= current_front_user.name %></a>
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= current_front_user.name_or_anonymous %></a>
       <ul class="dropdown-menu">
+        <li class="nav-item"><%= link_to t("layouts.menu.my_weekends"), :my_weekends_front_weekends, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to t("layouts.menu.profile"), edit_front_front_user_path(current_front_user), class: "nav-link" %></li>
         <li class="nav-item"><%= link_to t("layouts.menu.logout"), front_logout_path, class: "nav-link" %></li>
       </ul>
     </li>

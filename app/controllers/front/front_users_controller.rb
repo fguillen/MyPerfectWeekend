@@ -11,8 +11,10 @@ class Front::FrontUsersController < Front::BaseController
 
   def create
     @front_user = FrontUser.new(front_user_params)
+
     if @front_user.save
-      redirect_to [:front, @front_user], notice: t("controllers.front_users.create.success")
+      AssignWeekendsInCookieService.perform(@front_user, cookies)
+      redirect_to :my_weekends_front_weekends, notice: t("controllers.front_users.create.success")
     else
       flash.now[:alert] = t("controllers.front_users.create.error")
       render action: :new
@@ -23,7 +25,7 @@ class Front::FrontUsersController < Front::BaseController
 
   def update
     if @front_user.update(front_user_params)
-      redirect_to [:front, @front_user], notice: t("controllers.front_users.update.success")
+      redirect_to :my_weekends_front_weekends, notice: t("controllers.front_users.update.success")
     else
       flash.now[:alert] = t("controllers.front_users.update.error")
       render action: :edit

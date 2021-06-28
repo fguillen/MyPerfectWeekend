@@ -88,7 +88,7 @@ footer a {
 
 .btn-nice {
     margin: -1em 1em 0 0;
-    box-shadow: 2px 7px 9px -3px rgb(93 91 91 / 76%);
+    box-shadow: 2px 7px 9px -3px rgba(93, 91, 91, 0.76);
     font-size: 2em;
     padding: 0 1em;
     background-color: #FEC5BB;
