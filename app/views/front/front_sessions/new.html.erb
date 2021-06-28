@@ -1,36 +1,66 @@
 <% title t("views.front_sessions.new.title") %>
 
-<ol class="breadcrumb push_down">
-  <li class="active"><%= t("layouts.breadcrumbs.login_front") %></li>
-</ol>
 
-<div class="row">
-  <div class="card col-6">
-    <div class="card-body">
-      <%= form_for [:front, @front_session] do |f| %>
-        <%= render "/shared/form_errors", :object => f.object %>
-        <fieldset>
-          <legend><%= "Use your credentials" %></legend>
-          <hr>
-          <div class="mb-3">
-            <%= f.label :email, class: "form-label" %>
-            <%= f.text_field :email, :class => "form-control", :type => "email", :placeholder => t("activerecord.attributes.front_user.email"), ariaDescribedby: "emailHelp" %>
-            <div id="emailHelp" class="form-text">Introduce your email.</div>
-          </div>
-          <div class="mb-3">
-            <%= f.label :password, class: "form-label" %>
-            <%= f.text_field :password, :class => "form-control", :type => "password", :placeholder => t("activerecord.attributes.front_user.password"), ariaDescribedby: "passwordHelp" %>
-            <div id="passwordHelp" class="form-text">Introduce your password. <%= link_to "Forgot password?", front_forgot_password_path %></div>
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-          </div>
-          <%= f.submit "Sign in", :class => "btn btn-primary" %>
-        </fieldset>
-      <% end %>
+<%= form_for [:front, @front_session] do |f| %>
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <%= render "/shared/form_errors", :object => f.object %>
+      <div id="front-user-description" class="box-user-input background-1">
+        <p>
+          My email is <span contenteditable="true" class="input-inline" id="front-user-email"></span>
+          and my password is <span contenteditable="true" class="input-inline" id="front-user-password"></span>
+        </p>
+      </div>
 
-      <p class="mt-2">You don't have an account yet? <%= link_to "Sign up", :new_front_front_user %></p>
+      <div class="box-help">
+        <p>
+          You don't remember or you don't have a passwor? <%= link_to "Ask for a new password", :front_forgot_password %>.
+          You don't have an account yet? <%= link_to "Sign up", :new_front_front_user %>
+        </p>
+      </div>
+
+      <%= f.text_field :email, id:"front-user-email-input", class: "form-control input-hidden" %>
+      <%= f.password_field :password, id:"front-user-password-input", class: "form-control input-hidden" %>
+
+      <div class="weekend-button text-end font-nice">
+        <%= f.submit "Send", class: "btn btn-nice mt-2" %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
+
+<style>
+
+#front-user-email {
+  min-width: 10em;
+}
+
+#front-user-passord {
+  min-width: 6em;
+}
+
+</style>
+
+
+<script>
+connectInputField("front-user-email", "front-user-email-input");
+connectInputField("front-user-password", "front-user-password-input");
+
+document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
+
+function filterKeys(event) {
+  console.log("filterKeys", event);
+  if (event.which === 13) {
+    event.preventDefault();
+  }
+}
+
+function connectInputField(elementId, inputElementId){
+  let element = document.getElementById(elementId);
+  let inputElement = document.getElementById(inputElementId);
+
+  element.textContent = inputElement.value;
+
+  element.addEventListener("input", () => { inputElement.value = element.textContent } , false);
+}
+</script>

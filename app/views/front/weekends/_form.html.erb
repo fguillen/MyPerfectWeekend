@@ -36,7 +36,8 @@ const STRONG_PATTERNS = [
 
 weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
 weekendDescriptionElement.addEventListener("input", updateTextArea, false);
-weekendDescriptionElement.addEventListener("keydown", filterKeys, false);
+document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
+
 updateTextArea();
 strongifyWeekendDiv();
 setCursorPositionAtTheEndOfWeekendDiv();

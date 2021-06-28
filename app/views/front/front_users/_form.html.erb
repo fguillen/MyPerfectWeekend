@@ -85,6 +85,15 @@ connectInputField("front-user-country", "front-user-country-input");
 connectInputField("front-user-wannabe", "front-user-wannabe-input");
 connectInputField("front-user-email", "front-user-email-input");
 
+document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
+
+function filterKeys(event) {
+  console.log("filterKeys", event);
+  if (event.which === 13) {
+    event.preventDefault();
+  }
+}
+
 function connectInputField(elementId, inputElementId){
   let element = document.getElementById(elementId);
   let inputElement = document.getElementById(inputElementId);
