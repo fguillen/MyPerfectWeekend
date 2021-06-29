@@ -6,6 +6,16 @@ body {
     color: #272625
 }
 
+.link-without-style {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.link-without-style:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 .font-nice {
     font-family: 'Rochester', cursive;
 }
@@ -80,10 +90,6 @@ footer a {
 
 [contenteditable] {
     outline: 0px solid transparent;
-}
-
-#weekend-description {
-    min-height: 20em;
 }
 
 .btn-nice {

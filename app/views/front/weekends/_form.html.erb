@@ -19,113 +19,27 @@
 <% end %>
 
 
+<style>
+#weekend-description {
+    min-height: 20em;
+}
+</style>
 
 <script>
-
-
-
 const weekendDescriptionElement = document.getElementById("weekend-description")
-const STRONG_PATTERNS = [
-  /thursday/ig,
-  /friday/ig,
-  /saturday/ig,
-  /sunday/ig,
-  /\d\d:\d\d/ig,
-  /"[^\\"]*(\\"[^\\"]*)*"/g
-];
 
 weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
-weekendDescriptionElement.addEventListener("input", updateTextArea, false);
 document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
 
-updateTextArea();
-strongifyWeekendDiv();
-setCursorPositionAtTheEndOfWeekendDiv();
-
-function filterKeys(event) {
-  console.log("filterKeys", event);
-  if (event.which === 13) {
-    event.preventDefault();
-  }
-}
+document.addEventListener("readystatechange", () => {
+  connectInputField("weekend-description", "weekend-text-area");
+  strongifyWeekendDiv(weekendDescriptionElement);
+  setCaretPositionAtTheEnd(weekendDescriptionElement);
+});
 
 function onDescriptionChange(event) {
-  console.log("onDescriptionChange", event);
-
-  strongifyWeekendDiv();
-}
-
-function updateTextArea() {
-  document.getElementById("weekend-text-area").value = weekendDescriptionElement.textContent;
-}
-
-function strongifyWeekendDiv() {
-  let actualCursorPosition = getCursorPosition();
-  let previousInnerHTML = weekendDescriptionElement.innerHTML;
-  let result = weekendDescriptionElement.textContent;
-
-  STRONG_PATTERNS.forEach(regex => {
-    result = strongifyText(result, regex);
-  });
-
-  if(previousInnerHTML !== result) {
-    console.debug("not equal: '" + previousInnerHTML + "', '" + result + "'");
-    weekendDescriptionElement.innerHTML = result;
-    setCursorPosition(weekendDescriptionElement, actualCursorPosition);
-  }
-}
-
-function setCursorPositionAtTheEndOfWeekendDiv() {
-  let contentLength = weekendDescriptionElement.textContent.length;
-  setCursorPosition(weekendDescriptionElement, contentLength);
-}
-
-function strongifyText(text, regex) {
-  return text.replace(regex, "<strong>$&</strong>");
-}
-
-function getCursorPosition() {
-    var sel = document.getSelection();
-    sel.modify("extend", "backward", "paragraphboundary");
-    var pos = sel.toString().length;
-    if(sel.anchorNode != undefined) sel.collapseToEnd();
-
-    return pos;
-}
-
-function setCursorPosition(element, desiredPosition) {
-  console.debug("setCursorPosition", desiredPosition);
-
-  let childNodes = element.childNodes;
-  let childIndex = 0;
-  let childPosition = 0;
-  let position = 0;
-  let actualChild = childNodes[0];
-
-  if( actualChild.firstChild ) {
-    actualChild = actualChild.firstChild;
-  }
-
-  while(position < desiredPosition) {
-    position += 1;
-    childPosition += 1;
-
-    if(childPosition >= actualChild.length && position < desiredPosition) {
-      childIndex += 1;
-      childPosition = 0;
-      actualChild = childNodes[childIndex];
-
-      if(actualChild.firstChild) {
-        actualChild = actualChild.firstChild;
-      }
-    }
-  }
-
-  setCursorPositionInChildNode(actualChild, childPosition);
-}
-
-function setCursorPositionInChildNode(element, position) {
-  var sel = window.getSelection();
-  sel.setPosition(element, position);
+  let actualCursorPosition = getCaretPosition();
+  strongifyWeekendDiv(weekendDescriptionElement);
+  setCaretPosition(weekendDescriptionElement, actualCursorPosition);
 }
 </script>

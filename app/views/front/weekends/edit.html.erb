@@ -1,11 +1,7 @@
 <% title t("views.weekends.edit.title", :uuid => @weekend.uuid) %>
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.weekends"), :front_weekends %></li>
-    <li class="breadcrumb-item"><%= link_to @weekend.uuid, [:front, @weekend] %></li>
-    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.edit" %></li>
-  </ol>
-</nav>
+<div class="offset-md-2 col-md-8 mb-2 background-2 box-notification">
+  Here you can Edit your Weekend
+</div>
 
 <%= render "form" %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: "front/pages#show", id: "welcome"
+  # root to: "front/pages#show", id: "welcome"
+  root to: redirect("front/weekends")
 
   namespace :admin do
     root to: redirect("admin/admin_users")
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   namespace :front do
-    root to: redirect("front/posts")
+    root to: redirect("front/weekends")
 
     get "login", to: "front_sessions#new", as: :login
     get "logout", to: "front_sessions#destroy", as: :logout

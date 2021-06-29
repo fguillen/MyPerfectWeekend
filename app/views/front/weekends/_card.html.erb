@@ -1,11 +1,15 @@
-<div class="col mb-2">
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <h5 class="card-title"><%= weekend.city %></h5>
-      </div>
-      <p class="card-text"><%= truncate(weekend.body, length: 300) %></p>
-      <%= link_to "Read weekend", [:front, weekend], class: "btn btn-primary" %>
+<div class="col-sm-6 col-lg-4 mb-4">
+  <%= link_to [:front, weekend], class: "link-without-style" do %>
+    <div class="mb-2 background-2 box-notification">
+      <%= front_user_description(weekend.front_user) %>
     </div>
-  </div>
+    <div id="weekend-description-<%= weekend.uuid %>" class="box-user-input background-1"><%= truncate(weekend.body, length: 100) %></div>
+  <% end %>
 </div>
+
+<script>
+document.addEventListener("readystatechange", () => {
+  strongifyWeekendDiv(document.getElementById("weekend-description-<%= weekend.uuid %>"));
+});
+
+</script>

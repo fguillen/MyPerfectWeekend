@@ -29,4 +29,17 @@ module ApplicationHelper
   def markdown(text)
     MarkdownRenderer.render(text).html_safe
   end
+
+  def front_user_description(front_user)
+    return "Anonymous" if front_user.nil?
+
+    elements = []
+
+    elements << front_user.name_or_anonymous
+    elements << front_user.country if front_user.country
+    elements << "#{front_user.age} years old" if front_user.age
+    elements << front_user.wannabe if front_user.wannabe
+
+    elements.join(", ")
+  end
 end

@@ -79,27 +79,15 @@
 
 
 <script>
-connectInputField("front-user-name", "front-user-name-input");
-connectInputField("front-user-age", "front-user-age-input");
-connectInputField("front-user-country", "front-user-country-input");
-connectInputField("front-user-wannabe", "front-user-wannabe-input");
-connectInputField("front-user-email", "front-user-email-input");
 
-document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
+document.addEventListener("readystatechange", () => {
+  connectInputField("front-user-name", "front-user-name-input");
+  connectInputField("front-user-age", "front-user-age-input");
+  connectInputField("front-user-country", "front-user-country-input");
+  connectInputField("front-user-wannabe", "front-user-wannabe-input");
+  connectInputField("front-user-email", "front-user-email-input");
 
-function filterKeys(event) {
-  console.log("filterKeys", event);
-  if (event.which === 13) {
-    event.preventDefault();
-  }
-}
+  document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
+});
 
-function connectInputField(elementId, inputElementId){
-  let element = document.getElementById(elementId);
-  let inputElement = document.getElementById(inputElementId);
-
-  element.textContent = inputElement.value;
-
-  element.addEventListener("input", () => { inputElement.value = element.textContent } , false);
-}
 </script>

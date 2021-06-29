@@ -1,32 +1,25 @@
 <% title t("views.weekends.show.title", :weekend_uuid => @weekend.uuid) %>
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.weekends"), :front_weekends %></li>
-    <li class="breadcrumb-item active"><%= @weekend.uuid %></li>
-  </ol>
-</nav>
 
 <div class="row">
-  <div class="col-3">
-    <p>
-      <%= link_to t("views.weekends.show.edit_button"), edit_front_weekend_path(@weekend), :class => "btn btn-primary" %>
-      <%= link_to t("views.weekends.show.delete_button"), [:front, @weekend], :data => { :confirm => t("views.weekends.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
-    </p>
+  <div class="offset-md-2 col-md-8">
+    <div class="mb-2 background-2 box-notification">
+      <%= front_user_description(@weekend.front_user) %>
+    </div>
+    <div id="weekend-description" class="box-user-input background-1"><%= @weekend.body %></div>
   </div>
 
-  <div class="col">
-    <div class="col mb-2">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <h5 class="card-title"><%= @weekend.city %></h5>
-          </div>
-          <div class="card-text">
-            <%= markdown(@weekend.body) %>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="col-md-2">
+    <%= link_to t("views.weekends.show.edit_button"), edit_front_weekend_path(@weekend), :class => "btn btn-primary" %>
+    <%= link_to t("views.weekends.show.delete_button"), [:front, @weekend], :data => { :confirm => t("views.weekends.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
   </div>
 </div>
+
+<script>
+
+document.addEventListener("readystatechange", () => {
+  strongifyWeekendDiv(document.getElementById("weekend-description"));
+});
+
+
+</script>
