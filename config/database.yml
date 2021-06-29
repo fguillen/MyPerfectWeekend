@@ -2,8 +2,9 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   collation: utf8mb4_bin
+  charset: utf8mb4
   username: root
-  password: <%= ENV.fetch('SECRET_RAILS_DB_PASSWORD') %>
+  password: <%= ENV.fetch("SECRET_RAILS_DB_PASSWORD") %>
   host: 127.0.0.1
   port: 3306
 
@@ -17,6 +18,4 @@ test:
 
 production:
   <<: *default
-  host: db
-  database: myperfectweekend
-  password: root
+  url: <%= ENV.fetch("DATABASE_URL") %>
