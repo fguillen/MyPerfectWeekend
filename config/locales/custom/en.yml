@@ -20,7 +20,6 @@ en:
         name: Name
         one: FrontUser
         password: Password
-        password_confirmation: Password confirmation
         uuid: Uuid
         wannabe: Wannabe
       post:
@@ -38,11 +37,13 @@ en:
       weekend:
         body: Body
         city: City
+        crated_at: Crated at
         created_at: Created at
         front_user:
           name: Name
           one: Front User
         one: Perfect Weekend
+        status: Status
         uuid: Uuid
     models:
       admin_user: Admin User
@@ -188,6 +189,7 @@ en:
     front_user:
       sections:
         posts: Posts
+        weekends: Weekends
     front_users:
       edit:
         text: Text

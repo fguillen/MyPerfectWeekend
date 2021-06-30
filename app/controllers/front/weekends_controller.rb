@@ -4,7 +4,7 @@ class Front::WeekendsController < Front::BaseController
   before_action :validate_current_front_user, only: [:edit, :update, :destroy]
 
   def index
-    @weekends = Weekend.order_by_recent
+    @weekends = Weekend.published.order_by_recent
   end
 
   def my_weekends
@@ -18,7 +18,7 @@ class Front::WeekendsController < Front::BaseController
   def show; end
 
   def random
-    @weekend = Weekend.all.sample # TODO: optimize this
+    @weekend = Weekend.published.sample # TODO: optimize this
     redirect_to [:front, @weekend]
   end
 
@@ -69,6 +69,10 @@ class Front::WeekendsController < Front::BaseController
 
   def load_weekend
     @weekend = Weekend.find(params[:id])
+
+    if !@weekend.published? && @weekend.front_user != current_front_user
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def validate_current_front_user

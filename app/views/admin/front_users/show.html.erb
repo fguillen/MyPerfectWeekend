@@ -11,7 +11,10 @@
 
 <dl class="row">
   <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.uuid" %></dt><dd class="col-sm-10"><%= @front_user.uuid %></dd>
-  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.name" %></dt><dd class="col-sm-10"><%= @front_user.name %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.name" %></dt><dd class="col-sm-10"><%= @front_user.name || "-" %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.age" %></dt><dd class="col-sm-10"><%= @front_user.age || "-" %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.country" %></dt><dd class="col-sm-10"><%= @front_user.country || "-" %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.wannabe" %></dt><dd class="col-sm-10"><%= @front_user.wannabe || "-" %></dd>
   <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.front_user.email" %></dt><dd class="col-sm-10"><%= @front_user.email %></dd>
 </dl>
 

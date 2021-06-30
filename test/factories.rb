@@ -32,5 +32,6 @@ FactoryBot.define do
   factory :weekend do
     city { "Berlin" }
     body { Faker::Lorem.sentence(word_count: 20) }
+    status { "published" }
   end
 end

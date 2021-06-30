@@ -116,17 +116,17 @@ class Admin::FrontUsersControllerTest < ActionController::TestCase
     assert !FrontUser.exists?(front_user.id)
   end
 
-  def test_posts
+  def test_weekends
     front_user = FactoryBot.create(:front_user)
-    post = FactoryBot.create(:post, front_user: front_user)
+    weekend = FactoryBot.create(:weekend, front_user: front_user)
 
     get(
-      :posts,
+      :weekends,
       params: {
         id: front_user
       }
     )
 
-    assert_primary_keys([post], assigns(:posts))
+    assert_primary_keys([weekend], assigns(:weekends))
   end
 end

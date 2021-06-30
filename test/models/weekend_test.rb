@@ -28,6 +28,15 @@ class WeekendTest < ActiveSupport::TestCase
     assert(weekend.valid?)
   end
 
+  def test_scope_published
+    _weekend_1 = FactoryBot.create(:weekend, status: "draft")
+    _weekend_2 = FactoryBot.create(:weekend, status: "moderation_pending")
+    weekend_3 = FactoryBot.create(:weekend, status: "published")
+    weekend_4 = FactoryBot.create(:weekend, status: "published")
+
+    assert_primary_keys([weekend_3, weekend_4].sort, Weekend.published.sort)
+  end
+
   def test_uuid_on_create
     weekend = FactoryBot.build(:weekend)
     assert_nil(weekend.uuid)
@@ -49,5 +58,13 @@ class WeekendTest < ActiveSupport::TestCase
     weekend = FactoryBot.create(:weekend, front_user: front_user)
 
     assert_equal(front_user, weekend.front_user)
+  end
+
+  def test_on_create_init_status
+    weekend = FactoryBot.build(:weekend, status: nil)
+    assert_nil weekend.status
+
+    weekend.save!
+    assert_equal("draft", weekend.status)
   end
 end

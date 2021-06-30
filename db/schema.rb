@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_175819) do
+ActiveRecord::Schema.define(version: 2021_06_30_201742) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", null: false
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2021_06_28_175819) do
     t.string "front_user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", limit: 32, null: false
     t.index ["front_user_id"], name: "fk_rails_baba50ed81"
     t.index ["uuid"], name: "index_weekends_on_uuid", unique: true
   end

@@ -36,6 +36,24 @@ class Front::WeekendsControllerTest < ActionController::TestCase
     assert_equal(weekend, assigns(:weekend))
   end
 
+  def test_show_raise_404_if_weekend_not_published_and_not_same_front_user
+    front_user = FactoryBot.create(:front_user)
+    weekend = FactoryBot.create(:weekend, status: "moderation_pending", front_user: front_user)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get :show, params: { id: weekend }
+    end
+  end
+
+  def test_show_if_weekend_not_published_and_same_front_user
+    weekend = FactoryBot.create(:weekend, status: "moderation_pending", front_user: @front_user)
+
+    get :show, params: { id: weekend }
+
+    assert_template "front/weekends/show"
+    assert_equal(weekend, assigns(:weekend))
+  end
+
   def test_new
     get :new
     assert_template "front/weekends/new"

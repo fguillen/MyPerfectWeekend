@@ -1,6 +1,6 @@
 class Admin::FrontUsersController < Admin::BaseController
   before_action :require_admin_user
-  before_action :load_front_user, only: [:show, :edit, :update, :destroy, :posts]
+  before_action :load_front_user, only: [:show, :edit, :update, :destroy, :weekends]
 
   def index
     @front_users = FrontUser.order_by_recent
@@ -38,14 +38,14 @@ class Admin::FrontUsersController < Admin::BaseController
     redirect_to :admin_front_users, notice: t("controllers.front_users.destroy.success")
   end
 
-  def posts
-    @posts = @front_user.posts
+  def weekends
+    @weekends = @front_user.weekends
   end
 
   protected
 
   def front_user_params
-    params.require(:front_user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:front_user).permit(:name, :country, :age, :wannabe, :email, :password)
   end
 
   private

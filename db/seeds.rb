@@ -18,8 +18,7 @@ unless FrontUser.where(email: email).exists?
   FrontUser.create!(
     name: "Front User",
     email: email,
-    password: password,
-    password_confirmation: password
+    password: password
   )
   puts "FrontUser created #{email}/#{password}"
 end

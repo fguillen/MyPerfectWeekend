@@ -11,6 +11,7 @@ class FrontUser < ApplicationRecord
   has_many :authorizations, class_name: "FrontAuthorization", dependent: :destroy
 
   has_many :posts, dependent: :destroy
+  has_many :weekends, dependent: :destroy
   # validates :name, presence: true
   validates :email, uniqueness: { case_sensitive: false }, format: { with: RubyRegex::Email }, allow_blank: true
   # validates :password, presence: true, on: :create

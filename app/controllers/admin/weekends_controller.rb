@@ -43,7 +43,7 @@ class Admin::WeekendsController < Admin::BaseController
   protected
 
   def weekend_params
-    params.require(:weekend).permit(:front_user_id, :title, :body)
+    params.require(:weekend).permit(:front_user_id, :title, :body, :status)
   end
 
   private
