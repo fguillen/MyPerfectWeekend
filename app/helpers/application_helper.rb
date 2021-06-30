@@ -12,7 +12,7 @@ module ApplicationHelper
     when :alert
       "alert alert-danger"
     when :notice
-      "alert alert-success"
+      "mb-2 background-2 box-notification"
     else
       type.to_s
     end
@@ -41,5 +41,15 @@ module ApplicationHelper
     elements << front_user.wannabe if front_user.wannabe
 
     elements.join(", ")
+  end
+
+  def card_width_classes(num_cards)
+    if num_cards == 1
+      "col-sm-12"
+    elsif num_cards == 2
+      "col-sm-6"
+    else
+      "col-sm-4"
+    end
   end
 end

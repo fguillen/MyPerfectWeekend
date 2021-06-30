@@ -13,6 +13,8 @@ en:
         updated_at: Updated at
         uuid: UUID
       front_user:
+        age: Age
+        country: Country
         created_at: Created at
         email: Email
         name: Name
@@ -20,6 +22,7 @@ en:
         password: Password
         password_confirmation: Password confirmation
         uuid: Uuid
+        wannabe: Wannabe
       post:
         body: Body
         created_at: Created at
@@ -98,8 +101,11 @@ en:
       create:
         error: Error
         success: Success
+        success_new_front_user: Success new front user
       destroy:
         success: Success
+      my_weekends:
+        no_weekends: You haven't written a Perfect Weekend yet, now it is a good time to start :)
       update:
         error: Error
         success: Success
@@ -116,6 +122,7 @@ en:
       front_users: Front users
       login_admin: Admin Login
       login_front: Login front
+      my_weekends: My weekends
       new: New
       posts: Posts
       reset_password: Reset your password
@@ -129,11 +136,13 @@ en:
       login: Login
       logout: Logout
       my_posts: See my posts
+      my_weekends: My weekends
       new_post: Write a new Post
       posts: See all posts
       pricing: Pricing
+      profile: Profile
       signup: Signup
-      weekends: Weekends
+      weekends: Perfect Weekends
   views:
     admin_sessions:
       forgot_password:
@@ -207,13 +216,15 @@ en:
         title: Title
     weekends:
       edit:
-        title: Title
+        title: Edit your Perfect Weekend
       index:
-        title: Title
+        title: All Perfect Weekends
+      my_weekends:
+        title: My Weekends
       new:
-        title: Title
+        title: Write a new Perfect Weekend
       show:
-        delete_button: Delete button
-        delete_confirmation: Delete confirmation
-        edit_button: Edit button
-        title: Title
+        delete_button: Delete
+        delete_confirmation: Are you sure you want to delete this Perfect Weekend?
+        edit_button: Edit
+        title: A Perfect Weekend

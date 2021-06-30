@@ -41,6 +41,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :weekends do
       get "my_weekends", on: :collection
+      get "random", on: :collection
     end
     resources :pages, only: [:show]
     resources :front_users, only: [:show, :new, :create, :edit, :update, :destroy]

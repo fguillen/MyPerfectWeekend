@@ -1,11 +1,9 @@
 <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-    <%= image_tag "shared/images/logo.png", width:"40", height:"40", class:"bi me-2" %>
-    <span class="fs-4">MyPerfectWeekend</span>
-  </a>
+  <%= link_to :front_root, class:"d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none  font-nice" do %>
+    <span class="fs-4">My Perfect Weekend</span> &nbsp; <span class="fs-5"><%= "· #{yield(:title)}" if content_for?(:title) %></span>
+  <% end %>
 
-  <ul class="nav nav-pills">
-    <li class="nav-item"><%= link_to t("layouts.menu.posts"), :front_posts, class: "nav-link" %></li>
+  <ul class="nav nav-pills font-console">
     <li class="nav-item"><%= link_to t("layouts.menu.weekends"), :front_weekends, class: "nav-link" %></li>
 
     <li class="nav-item dropdown">
@@ -17,9 +15,4 @@
       </ul>
     </li>
   </ul>
-</header>
-
-<header class="text-center justify-content-center py-3 mb-4 font-nice">
-  <h1>My Perfect Weekend</h1>
-  <h2>. Berlin .</h2>
 </header>

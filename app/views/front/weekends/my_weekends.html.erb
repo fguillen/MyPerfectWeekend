@@ -1,0 +1,15 @@
+<% title t("views.weekends.my_weekends.title") %>
+
+
+<div class="row">
+  <div class="offset-md-2 col-10">
+    <%= render partial: "list", locals: { weekends: @weekends } %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="offset-md-2 col-10 text-end font-nice">
+    <p><%= link_to "Write another Perfect Weekend", new_front_weekend_path, :class => "btn btn-nice" %></p>
+  </div>
+</div>

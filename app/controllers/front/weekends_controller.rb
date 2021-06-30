@@ -12,15 +12,18 @@ class Front::WeekendsController < Front::BaseController
 
     if @weekends.empty?
       redirect_to :new_front_weekend, notice: t("controllers.weekends.my_weekends.no_weekends")
-    else
-      render action: :index
     end
   end
 
   def show; end
 
+  def random
+    @weekend = Weekend.all.sample # TODO: optimize this
+    redirect_to [:front, @weekend]
+  end
+
   def new
-    @weekend = Weekend.new(front_user: current_front_user)
+    @weekend = Weekend.new(front_user: current_front_user, body: "My perfect weekend starts on Friday at 18:00")
   end
 
   def create
@@ -53,7 +56,7 @@ class Front::WeekendsController < Front::BaseController
 
   def destroy
     @weekend.destroy
-    redirect_to :front_weekends, notice: t("controllers.weekends.destroy.success")
+    redirect_to :my_weekends_front_weekends, notice: t("controllers.weekends.destroy.success")
   end
 
   protected

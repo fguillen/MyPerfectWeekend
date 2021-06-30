@@ -1,4 +1,6 @@
-<div class="col-sm-6 col-lg-4 mb-4">
+<!-- col-sm-6 col-lg-4 -->
+
+<div class="<%= card_width_classes(num_cards) %> mb-4">
   <%= link_to [:front, weekend], class: "link-without-style" do %>
     <div class="mb-2 background-2 box-notification">
       <%= front_user_description(weekend.front_user) %>

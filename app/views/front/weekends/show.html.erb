@@ -10,8 +10,16 @@
   </div>
 
   <div class="col-md-2">
-    <%= link_to t("views.weekends.show.edit_button"), edit_front_weekend_path(@weekend), :class => "btn btn-primary" %>
-    <%= link_to t("views.weekends.show.delete_button"), [:front, @weekend], :data => { :confirm => t("views.weekends.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
+    <% if current_front_user && @weekend.front_user == current_front_user %>
+      <%= link_to t("views.weekends.show.edit_button"), edit_front_weekend_path(@weekend), :class => "btn btn-primary" %>
+      <%= link_to t("views.weekends.show.delete_button"), [:front, @weekend], :data => { :confirm => t("views.weekends.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-10 text-end font-nice">
+    <p><%= link_to "Read Another", :random_front_weekends, :class => "btn btn-nice pull-up" %></p>
   </div>
 </div>
 

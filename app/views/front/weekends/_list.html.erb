@@ -1,6 +1,6 @@
 <div class="row" data-masonry='{"percentPosition": true }'>
   <% weekends.each do |weekend| %>
-    <%= render partial: "card", locals: { weekend: weekend } %>
+    <%= render partial: "card", locals: { weekend: weekend, num_cards: weekends.count } %>
   <% end %>
 </div>
 
