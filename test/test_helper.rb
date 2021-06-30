@@ -4,12 +4,12 @@ if ENV["COVERAGE"]
   SimpleCov.start "rails"
 end
 
-ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../config/environment', __dir__)
-require 'rails/test_help'
-require "mocha/setup"
+ENV["RAILS_ENV"] ||= "test"
+require File.expand_path("../config/environment", __dir__)
+require "rails/test_help"
+require "mocha/minitest"
 require_relative "factories"
-require 'authlogic/test_case'
+require "authlogic/test_case"
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

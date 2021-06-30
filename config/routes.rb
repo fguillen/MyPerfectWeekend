@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get "posts", on: :member
     end
     resources :posts
+    resources :weekends
   end
 
   namespace :api do

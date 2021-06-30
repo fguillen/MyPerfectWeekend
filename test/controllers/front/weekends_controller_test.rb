@@ -21,7 +21,7 @@ class Front::WeekendsControllerTest < ActionController::TestCase
     weekend_2 = FactoryBot.create(:weekend, front_user: @front_user, created_at: "2020-04-26")
     _weekend_3 = FactoryBot.create(:weekend, front_user: front_user_other, created_at: "2020-04-27")
 
-    get :index
+    get :my_weekends
 
     assert_template "front/weekends/my_weekends"
     assert_primary_keys([weekend_2, weekend_1], assigns(:weekends))
@@ -73,7 +73,7 @@ class Front::WeekendsControllerTest < ActionController::TestCase
     )
 
     weekend = Weekend.last
-    assert_redirected_to [:front, weekend]
+    assert_redirected_to :my_weekends_front_weekends
 
     assert_equal("The Title Wadus", weekend.city)
     assert_equal("The Body Wadus Wadus Wadus Wadus", weekend.body)
@@ -133,7 +133,7 @@ class Front::WeekendsControllerTest < ActionController::TestCase
 
     delete :destroy, params: { id: weekend }
 
-    assert_redirected_to :front_weekends
+    assert_redirected_to :my_weekends_front_weekends
     assert_not_nil(flash[:notice])
 
     assert !Weekend.exists?(weekend.id)

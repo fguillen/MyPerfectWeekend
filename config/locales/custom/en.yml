@@ -38,6 +38,12 @@ en:
       weekend:
         body: Body
         city: City
+        created_at: Created at
+        front_user:
+          name: Name
+          one: Front User
+        one: Perfect Weekend
+        uuid: Uuid
     models:
       admin_user: Admin User
   controllers:
@@ -216,12 +222,14 @@ en:
         title: Title
     weekends:
       edit:
+        text: Text
         title: Edit your Perfect Weekend
       index:
         title: All Perfect Weekends
       my_weekends:
         title: My Weekends
       new:
+        text: Text
         title: Write a new Perfect Weekend
       show:
         delete_button: Delete

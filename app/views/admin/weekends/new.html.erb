@@ -1,0 +1,15 @@
+<% title t("views.weekends.new.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.weekends"), :admin_weekends %></li>
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.new" %></li>
+  </ol>
+</nav>
+
+<p class="lead">
+  <%= t("views.weekends.new.text") %>
+</p>
+
+
+<%= render "form" %>

@@ -1,0 +1,23 @@
+<% title t("views.weekends.show.title", :weekend_uuid => @weekend.uuid) %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to t("layouts.breadcrumbs.weekends"), :admin_weekends %></li>
+    <li class="breadcrumb-item active"><%= @weekend.uuid %></li>
+  </ol>
+</nav>
+
+<dl class="row">
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.weekend.uuid" %></dt><dd class="col-sm-10"><%= @weekend.uuid %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.weekend.body" %></dt><dd class="col-sm-10"><%= @weekend.body %></dd>
+  <dt class="col-sm-2 text-right"><%= t "activerecord.attributes.weekend.front_user.name" %></dt><dd class="col-sm-10"><%= @weekend.front_user ? @weekend.front_user.name : "-" %></dd>
+</dl>
+
+<%= @weekend.body %>
+
+<div class="controls text-right">
+  <p>
+    <%= link_to t("views.weekends.show.edit_button"), edit_admin_weekend_path(@weekend), :class => "btn btn-primary" %>
+    <%= link_to t("views.weekends.show.delete_button"), [:admin, @weekend], :data => { :confirm => t("views.weekends.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
+  </p>
+</div>

@@ -25,7 +25,7 @@ class WeekendTest < ActiveSupport::TestCase
     assert(weekend.valid?)
 
     weekend = FactoryBot.build(:weekend, front_user: nil)
-    refute(weekend.valid?)
+    assert(weekend.valid?)
   end
 
   def test_uuid_on_create

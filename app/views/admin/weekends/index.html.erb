@@ -1,0 +1,11 @@
+<% title t("views.weekends.index.title") %>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><%= t "layouts.breadcrumbs.weekends" %></li>
+  </ol>
+</nav>
+
+<p><%= link_to "New Weekend", new_admin_weekend_path, :class => "btn btn-outline-primary" %></p>
+
+<%= render partial: "list", locals: { weekends: @weekends } %>

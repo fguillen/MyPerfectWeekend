@@ -19,7 +19,7 @@ class Front::FrontSessionsControllerTest < ActionController::TestCase
       }
     )
 
-    assert_redirected_to :front_root
+    assert_redirected_to :my_weekends_front_weekends
     assert_not_nil(flash[:notice])
   end
 

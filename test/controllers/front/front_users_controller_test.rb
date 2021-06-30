@@ -28,8 +28,7 @@ class Front::FrontUsersControllerTest < ActionController::TestCase
         front_user: {
           name: "Front Wadus",
           email: "email@email.com",
-          password: "Password!",
-          password_confirmation: "Password!"
+          password: "Password!"
         }
       }
     )
@@ -44,14 +43,13 @@ class Front::FrontUsersControllerTest < ActionController::TestCase
         front_user: {
           name: "Front Wadus",
           email: "email@email.com",
-          password: "Password!",
-          password_confirmation: "Password!"
+          password: "Password!"
         }
       }
     )
 
     front_user = FrontUser.find_by(email: "email@email.com")
-    assert_redirected_to [:front, front_user]
+    assert_redirected_to :my_weekends_front_weekends
 
     assert_equal("Front Wadus", front_user.name)
     assert_equal("email@email.com", front_user.email)
@@ -67,7 +65,7 @@ class Front::FrontUsersControllerTest < ActionController::TestCase
   def test_update_invalid
     FrontUser.any_instance.stubs(:valid?).returns(false)
 
-    put :update, params: { id: @front_user, front_user: { password: "password", password_confirmation: "invalid" } }
+    put :update, params: { id: @front_user, front_user: { password: "password" } }
 
     assert_template "edit"
     assert_not_nil(flash[:alert])
@@ -84,7 +82,7 @@ class Front::FrontUsersControllerTest < ActionController::TestCase
       }
     )
 
-    assert_redirected_to [:front, @front_user]
+    assert_redirected_to :my_weekends_front_weekends
     assert_not_nil(flash[:notice])
 
     @front_user.reload
@@ -118,8 +116,7 @@ class Front::FrontUsersControllerTest < ActionController::TestCase
       params: {
         reset_password_code: front_user.perishable_token,
         front_user: {
-          password: "Password!",
-          password_confirmation: "Password!"
+          password: "Password!"
         }
       }
     )

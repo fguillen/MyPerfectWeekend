@@ -40,7 +40,6 @@ class Admin::FrontUsersControllerTest < ActionController::TestCase
           name: "Admin Wadus",
           email: "email@email.com",
           password: "Password!",
-          password_confirmation: "Password!"
         }
       }
     )
@@ -56,7 +55,6 @@ class Admin::FrontUsersControllerTest < ActionController::TestCase
           name: "Admin Wadus",
           email: "email@email.com",
           password: "Password!",
-          password_confirmation: "Password!"
         }
       }
     )
@@ -81,7 +79,7 @@ class Admin::FrontUsersControllerTest < ActionController::TestCase
     front_user = FactoryBot.create(:front_user)
     FrontUser.any_instance.stubs(:valid?).returns(false)
 
-    put :update, params: { id: front_user, front_user: { password: "password", password_confirmation: "invalid" } }
+    put :update, params: { id: front_user, front_user: { password: "password" } }
 
     assert_template "edit"
     assert_not_nil(flash[:alert])
