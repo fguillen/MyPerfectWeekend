@@ -69,17 +69,17 @@ en:
       authentication_required: Authentication required
     front_sessions:
       authenticate:
-        error: Authentication Failure
-        success: Front User Authenticated
+        error: There were some issues
+        success: Welcome back!
       logout:
-        success: Successfully logged out
+        success: Come back soon! :)
       reset_password:
         error: Sorry, %{email} can't be found in our database
         success: Password reset instructions have been sent to your email
     front_users:
       create:
         error: Errors were encountered when trying to create Front User
-        success: Successfully created Front User
+        success: Your profile has been recorded properly
       destroy:
         success: Successfully deleted Front User
       reset_password:
@@ -87,7 +87,7 @@ en:
         success: Password reset instructions have been sent to your email
       update:
         error: Errors were encountered when trying to update Front User
-        success: Successfully updated Front User
+        success: Your profile has been updated properly
     posts:
       create:
         error: Errors were encountered when trying to create Post
@@ -99,16 +99,16 @@ en:
         success: Successfully updated Post
     weekends:
       create:
-        error: Error
-        success: Success
-        success_new_front_user: Success new front user
+        error: Ouch!, there was an error while we try to record your Perfect Weekend.
+        success: Your Perfect Weekend has been recorded properly.
+        success_new_front_user: Your Perfect Weekend has been recorded. If you want to can add some extra information about you to give some context to your Weekend.
       destroy:
-        success: Success
+        success: The Perfect Weekend has been totally deleted.
       my_weekends:
         no_weekends: You haven't written a Perfect Weekend yet, now it is a good time to start :)
       update:
-        error: Error
-        success: Success
+        error: Ouch!, there was an error while we try to update your Perfect Weekend.
+        success: Your Perfect Weekend has been updated properly.
   date:
     formats:
       ymd: "%Y-%d-%m"

@@ -1,10 +1,7 @@
 <% title t("views.weekends.index.title") %>
 
 <div class="row">
-  <div class="col-2">
-    <p><%= link_to "New weekend", new_front_weekend_path, :class => "btn btn-outline-primary" %></p>
-  </div>
-  <div class="col-10">
+  <div class="offset-2 col-10">
     <%= render partial: "list", locals: { weekends: @weekends } %>
   </div>
 </div>

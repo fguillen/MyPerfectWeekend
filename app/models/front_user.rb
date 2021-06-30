@@ -19,7 +19,7 @@ class FrontUser < ApplicationRecord
   validates :wannabe, length: { maximum: 100 }, allow_blank: true
   validates :age, numericality: { only_integer: true }, allow_blank: true
 
-  validates_with PasswordValidator, unless: -> { password.blank? }
+  # validates_with PasswordValidator, unless: -> { password.blank? }
 
   scope :order_by_recent, -> { order("created_at desc") }
 

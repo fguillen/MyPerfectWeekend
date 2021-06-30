@@ -13,7 +13,9 @@
     </div>
 
     <div class="col-md-2">
-      button
+      <%= link_to :random_front_weekends, target: "_blank", class: "link-without-style" do %>
+        <i id="info-tooltip" class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="top" title="See examples"></i>
+      <% end %>
     </div>
   </div>
 <% end %>
@@ -26,20 +28,29 @@
 </style>
 
 <script>
-const weekendDescriptionElement = document.getElementById("weekend-description")
-
-weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
-document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
-
 document.addEventListener("readystatechange", () => {
-  connectInputField("weekend-description", "weekend-text-area");
-  strongifyWeekendDiv(weekendDescriptionElement);
-  setCaretPositionAtTheEnd(weekendDescriptionElement);
-});
+  const weekendDescriptionElement = document.getElementById("weekend-description")
 
-function onDescriptionChange(event) {
-  let actualCursorPosition = getCaretPosition();
-  strongifyWeekendDiv(weekendDescriptionElement);
-  setCaretPosition(weekendDescriptionElement, actualCursorPosition);
-}
+  weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
+  document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
+
+  document.addEventListener("readystatechange", () => {
+    connectInputField("weekend-description", "weekend-text-area");
+    strongifyWeekendDiv(weekendDescriptionElement);
+    setCaretPositionAtTheEnd(weekendDescriptionElement);
+  });
+
+  function onDescriptionChange(event) {
+    let actualCursorPosition = getCaretPosition();
+    strongifyWeekendDiv(weekendDescriptionElement);
+    setCaretPosition(weekendDescriptionElement, actualCursorPosition);
+  }
+
+  // tooltip
+
+  var exampleEl = document.getElementById("info-tooltip")
+  var tooltip = new bootstrap.Tooltip(exampleEl, {
+    boundary: document.body // or document.querySelector('#boundary')
+  });
+});
 </script>

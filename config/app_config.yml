@@ -1,5 +1,6 @@
 ---
 test:
+  host: test.myperfectweekend.club
   admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "GOOGLE_CLIENT_ID"
@@ -18,6 +19,7 @@ test:
       - TEST_TOKEN_2
 
 development:
+  host: dev.myperfectweekend.club
   admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "193465454284-apigmm255ti8n2rb9ov2obtir6s2cdin.apps.googleusercontent.com"
@@ -34,6 +36,7 @@ development:
       - "<%= ENV.fetch('SECRET_APP_TOKEN') %>"
 
 staging:
+  host: staging.myperfectweekend.club
   admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "193465454284-apigmm255ti8n2rb9ov2obtir6s2cdin.apps.googleusercontent.com"
@@ -52,6 +55,7 @@ staging:
       - "<%= ENV.fetch('SECRET_APP_TOKEN') %>"
 
 production:
+  host: myperfectweekend.club
   admin_email: it@myperfectweekend.com
   google_auth:
     client_id: "193465454284-apigmm255ti8n2rb9ov2obtir6s2cdin.apps.googleusercontent.com"
