@@ -98,6 +98,21 @@ class Front::WeekendsControllerTest < ActionController::TestCase
     assert_equal(@front_user, weekend.front_user)
   end
 
+  def test_on_create_weekend_has_moderation_pending_status
+    post(
+      :create,
+      params: {
+        weekend: {
+          body: "The Body Wadus Wadus Wadus Wadus",
+        }
+      }
+    )
+
+    weekend = Weekend.last
+
+    assert_equal("moderation_pending", weekend.status)
+  end
+
   def test_edit
     weekend = FactoryBot.create(:weekend, front_user: @front_user)
 
@@ -144,6 +159,23 @@ class Front::WeekendsControllerTest < ActionController::TestCase
 
     weekend.reload
     assert_equal("The New Title", weekend.city)
+  end
+
+  def test_on_update_weekend_has_moderation_pending_status
+    weekend = FactoryBot.create(:weekend, front_user: @front_user, status: "published")
+
+    put(
+      :update,
+      params: {
+        id: weekend,
+        weekend: {
+          body: "The Body Wadus Wadus Wadus Wadus",
+        }
+      }
+    )
+
+    weekend.reload
+    assert_equal("moderation_pending", weekend.status)
   end
 
   def test_destroy

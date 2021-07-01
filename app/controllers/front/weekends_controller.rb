@@ -29,6 +29,7 @@ class Front::WeekendsController < Front::BaseController
   def create
     @weekend = Weekend.new(weekend_params)
     @weekend.front_user = current_front_user
+    @weekend.status = "moderation_pending"
 
     if @weekend.save
       if current_front_user.nil?
@@ -46,6 +47,8 @@ class Front::WeekendsController < Front::BaseController
   def edit; end
 
   def update
+    @weekend.status = "moderation_pending"
+
     if @weekend.update(weekend_params)
       redirect_to [:front, @weekend], notice: t("controllers.weekends.update.success")
     else
