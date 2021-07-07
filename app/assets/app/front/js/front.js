@@ -15,6 +15,10 @@ function strongifyWeekendDiv(element) {
         result = strongifyText(result, regex);
     });
 
+    // Fixing bug in Firefox when space at the end of the text
+    result = result.replace(/&nbsp;/g, " ");
+    result = result.replace(/\s$/, "&nbsp;");
+
     element.innerHTML = result;
 }
 
@@ -27,13 +31,16 @@ function setCaretPositionAtTheEnd(element) {
     setCaretPosition(element, contentLength);
 }
 
-function getCaretPosition() {
-    var sel = document.getSelection();
-    sel.modify("extend", "backward", "paragraphboundary");
-    var pos = sel.toString().length;
-    if (sel.anchorNode != undefined) sel.collapseToEnd();
-
-    return pos;
+// From: https://stackoverflow.com/a/65637662/316700
+function getCaretPosition(element) {
+    let selection = document.getSelection();
+    let childOffset = selection.focusOffset;
+    let range = document.createRange();
+    range.setStart(element, 0);
+    range.setEnd(selection.focusNode, childOffset);
+    let contentString = range.toString();
+    let position = contentString.length;
+    return position;
 }
 
 function setCaretPosition(element, desiredPosition) {

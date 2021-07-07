@@ -29,7 +29,7 @@
 
 <script>
 document.addEventListener("readystatechange", () => {
-  const weekendDescriptionElement = document.getElementById("weekend-description")
+  const weekendDescriptionElement = document.getElementById("weekend-description");
 
   weekendDescriptionElement.addEventListener("input", onDescriptionChange, false);
   document.querySelectorAll(".input-inline").forEach(element => element.addEventListener("keydown", filterKeys, false));
@@ -41,13 +41,12 @@ document.addEventListener("readystatechange", () => {
   });
 
   function onDescriptionChange(event) {
-    let actualCursorPosition = getCaretPosition();
+    let actualCursorPosition = getCaretPosition(weekendDescriptionElement);
     strongifyWeekendDiv(weekendDescriptionElement);
     setCaretPosition(weekendDescriptionElement, actualCursorPosition);
   }
 
   // tooltip
-
   var exampleEl = document.getElementById("info-tooltip")
   var tooltip = new bootstrap.Tooltip(exampleEl, {
     boundary: document.body // or document.querySelector('#boundary')
