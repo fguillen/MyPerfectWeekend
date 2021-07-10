@@ -1,18 +1,18 @@
 function strongifyWeekendDiv(element) {
     const STRONG_PATTERNS = [
-        /thursday/ig,
-        /friday/ig,
-        /saturday/ig,
-        /sunday/ig,
-        /\d\d:\d\d/ig,
-        /"[^\\"]*(\\"[^\\"]*)*"/g
-    ];
+        { regex: /thursday/ig, class: "weekday" },
+        { regex: /friday/ig, class: "weekday" },
+        { regex: /saturday/ig, class: "weekday" },
+        { regex: /sunday/ig, class: "weekday" },
+        { regex: /\d?\d:\d\d/ig, class: "hour" },
+        { regex: /"[^\\"]*(\\"[^\\"]*)*"/ig, class: "place" }
+    ]
 
     let previousInnerHTML = element.innerHTML;
     let result = element.textContent;
 
-    STRONG_PATTERNS.forEach(regex => {
-        result = strongifyText(result, regex);
+    STRONG_PATTERNS.forEach(pattern => {
+        result = strongifyText(result, pattern);
     });
 
     // Fixing bug in Firefox when space at the end of the text
@@ -22,8 +22,8 @@ function strongifyWeekendDiv(element) {
     element.innerHTML = result;
 }
 
-function strongifyText(text, regex) {
-    return text.replace(regex, "<strong>$&</strong>");
+function strongifyText(text, pattern) {
+    return text.replace(pattern.regex, "<strong class='" + pattern.class + "'>$&</strong>");
 }
 
 function setCaretPositionAtTheEnd(element) {

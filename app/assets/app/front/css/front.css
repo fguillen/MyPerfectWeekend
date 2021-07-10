@@ -45,18 +45,35 @@ footer a {
 .box-user-input {
     padding: 1em;
     font-family: 'Special Elite', cursive;
-    font-size: 1em;
+    font-size: 0.8em;
     line-height: 1.5em;
 }
 
 @media (min-width: 768px) {
     .box-user-input {
         padding: 2em;
+        font-size: 1em;
     }
 }
 
 .box-user-input strong {
     color: #b82020;
+}
+
+.box-user-input strong.weekday::before {
+    content: "★";
+}
+
+.box-user-input strong.weekday {
+    color: #b82020;
+}
+
+.box-user-input strong.hour {
+    color: #aa1d1dc8;
+}
+
+.box-user-input strong.place {
+    color: #aa1d1dc8;
 }
 
 .box-notification {
