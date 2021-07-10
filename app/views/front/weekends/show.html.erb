@@ -2,14 +2,14 @@
 
 
 <div class="row">
-  <div class="offset-md-2 col-md-8">
+  <div class="offset-xl-2 col-xl-8">
     <div class="mb-2 background-2 box-notification">
       <%= front_user_description(@weekend.front_user) %>
     </div>
     <div id="weekend-description" class="box-user-input background-1"><%= @weekend.body %></div>
   </div>
 
-  <div class="col-md-2">
+  <div class="col-xl-2">
     <% if current_front_user && @weekend.front_user == current_front_user %>
       <%= link_to t("views.weekends.show.edit_button"), edit_front_weekend_path(@weekend), :class => "btn btn-primary" %>
       <%= link_to t("views.weekends.show.delete_button"), [:front, @weekend], :data => { :confirm => t("views.weekends.show.delete_confirmation") }, :method => :delete, :class => "btn btn-danger" %>
@@ -18,7 +18,7 @@
 </div>
 
 <div class="row">
-  <div class="col-10 text-end font-nice">
+  <div class="col-xl-10 text-end font-nice">
     <p><%= link_to "Read Another", :random_front_weekends, :class => "btn btn-nice pull-up" %></p>
   </div>
 </div>

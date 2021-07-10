@@ -1,7 +1,7 @@
 
 <%= form_for [:front, @weekend] do |f| %>
   <div class="row">
-    <div class="offset-md-2 col-md-8">
+    <div class="offset-xl-2 col-xl-8">
       <%= render "/shared/form_errors", :object => f.object %>
 
       <div id="weekend-description" class="box-user-input background-1" contenteditable="true">My perfect weekend starts on Friday at 18:00 ... </div>
@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-xl-2">
       <%= link_to :random_front_weekends, target: "_blank", class: "link-without-style" do %>
         <i id="info-tooltip" class="bi bi-info-circle-fill" data-bs-toggle="tooltip" data-bs-placement="top" title="See examples"></i>
       <% end %>

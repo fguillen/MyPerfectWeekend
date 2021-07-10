@@ -29,8 +29,8 @@ body {
 }
 
 footer {
-    border-top: 1px solid #FEC5BB;
-    color: #FEC5BB;
+    border-top: 1px solid #b82021;
+    color: #b82021;
     padding-top: 1em;
 }
 
@@ -39,25 +39,39 @@ footer ul {
 }
 
 footer a {
-    color: #FEC5BB;
+    color: #b82021;
 }
 
 .box-user-input {
-    padding: 2em;
+    padding: 1em;
     font-family: 'Special Elite', cursive;
-    font-size: 1.5em;
-    line-height: 1.2em;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+@media (min-width: 768px) {
+    .box-user-input {
+        padding: 2em;
+    }
 }
 
 .box-user-input strong {
-    color: #F82F2F;
+    color: #b82020;
 }
 
 .box-notification {
-    padding: 1em 2em;
+    padding: 1em 1em;
     font-family: 'Inconsolata', monospace;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 0.9em;
+}
+
+@media (min-width: 768px) {
+    .box-notification {
+        padding: 1em 2em;
+        font-size: 1.2em;
+        line-height: 0.9em;
+    }
 }
 
 .box-help {
@@ -84,7 +98,7 @@ footer a {
     background-color: #FAE1DD;
     min-height: 1.3em;
     min-width: 5em;
-    color: #F82F2F;
+    color: #b82020;
     padding: 0.2em 0.5em;
 }
 
@@ -98,11 +112,17 @@ footer a {
 
 .btn-nice {
     box-shadow: 2px 7px 9px -3px rgba(93, 91, 91, 0.76);
-    font-size: 2em;
+    font-size: 1.5em;
     padding: 0 1em;
-    background-color: #FEC5BB;
+    background-color: #b82021;
     color: #272625;
-    border-color: #FEC5BB;
+    border-color: #b82021;
+}
+
+@media (min-width: 768px) {
+    .btn-nice {
+        font-size: 2em;
+    }
 }
 
 .btn-nice:hover,
