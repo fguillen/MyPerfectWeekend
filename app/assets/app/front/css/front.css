@@ -49,19 +49,15 @@ footer a {
     line-height: 1.5em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .box-user-input {
         padding: 2em;
-        font-size: 1em;
+        font-size: 1.5em;
     }
 }
 
 .box-user-input strong {
     color: #b82020;
-}
-
-.box-user-input strong.weekday::before {
-    content: "★";
 }
 
 .box-user-input strong.weekday {
@@ -83,7 +79,7 @@ footer a {
     line-height: 0.9em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .box-notification {
         padding: 1em 2em;
         font-size: 1.2em;
@@ -136,7 +132,7 @@ footer a {
     border-color: #b82021;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     .btn-nice {
         font-size: 2em;
     }
