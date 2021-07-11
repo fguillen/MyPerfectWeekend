@@ -65,11 +65,11 @@ footer a {
 }
 
 .box-user-input strong.hour {
-    color: #aa1d1dc8;
+    color: #b82020;
 }
 
 .box-user-input strong.place {
-    color: #aa1d1dc8;
+    color: #b82020;
 }
 
 .box-notification {
@@ -87,6 +87,11 @@ footer a {
     }
 }
 
+.box-weekend-creator {
+    font-family: 'Special Elite', cursive;
+    color: white;
+}
+
 .box-help {
     line-height: 0.95em;
     font-family: 'Inconsolata', monospace;
@@ -100,6 +105,10 @@ footer a {
 
 .background-2 {
     background-color: #FFD7BA;
+}
+
+.background-3 {
+    background-color: #b82020;
 }
 
 .input-hidden {
@@ -123,13 +132,14 @@ footer a {
     margin: -1em 1em 0 0;
 }
 
-.btn-nice {
+.btn-nice,
+.btn-nice:visited {
     box-shadow: 2px 7px 9px -3px rgba(93, 91, 91, 0.76);
     font-size: 1.5em;
     padding: 0 1em;
-    background-color: #b82021;
-    color: #272625;
-    border-color: #b82021;
+    background-color: #272625;
+    color: white;
+    border-color: #272625;
 }
 
 @media (min-width: 992px) {
@@ -140,11 +150,10 @@ footer a {
 
 .btn-nice:hover,
 .btn-nice:active,
-.btn-nice:visited,
 .btn-nice:focus {
-    background-color: #f5b0a3;
-    color: #272625;
-    border-color: #f5b0a3;
+    background-color: #090908;
+    color: white;
+    border-color: #090908;
 }
 
 .dot {
