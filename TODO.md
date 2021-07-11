@@ -1,2 +1,3 @@
 - integrate LogBook
 - hide password fields
+- only for eating the whole weekend: https://www.reddit.com/r/berlinsocialclub/comments/ogrbqi/how_your_berlin_perfect_weekend_looks_like/h4s7s47?utm_source=share&utm_medium=web2x&context=3
